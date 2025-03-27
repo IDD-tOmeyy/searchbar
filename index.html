@@ -3,28 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uiverse Custom Searchbar</title>
+  <title>Header Searchbar Mini</title>
   <style>
-    * {
-      box-sizing: border-box;
+    html, body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
       background: transparent;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
     }
 
     .input-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 15px;
       position: relative;
+      height: 50px;
+      width: 100%;
     }
 
     .input {
@@ -39,7 +35,7 @@
       box-shadow: 0px 0px 3px #E8DEBD;
       padding-right: 40px;
       color: #fff;
-      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+      font-family: "Trebuchet MS", sans-serif;
       font-size: 17px;
     }
 
@@ -57,25 +53,22 @@
       width: 50px;
       height: 50px;
       outline: none;
-      border-style: none;
+      border: none;
       border-radius: 50%;
-      pointer-events: painted;
       background-color: transparent;
       transition: 0.2s linear;
     }
 
-    /* Lupe beim normalen Zustand */
     .icon svg path {
       stroke: #ffffff;
       transition: stroke 0.3s ease;
     }
 
-    /* Lupe und Input beim Fokus */
     .icon:focus ~ .input,
     .input:focus {
       box-shadow: none;
       width: 250px;
-      border-radius: 0px;
+      border-radius: 0;
       background-color: transparent;
       border-bottom: 3px solid #C2B280;
       transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
