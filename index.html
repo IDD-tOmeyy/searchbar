@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uiverse Searchbar – Wix Fix</title>
+  <title>Uiverse Searchbar – Transparent</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,7 +12,7 @@
     }
 
     body {
-      background-color: #000;
+      background-color: transparent; /* ← Kein schwarzer Hintergrund */
       font-family: Arial, sans-serif;
       height: 100vh;
       display: flex;
@@ -201,17 +201,14 @@
         transform: translate(0px, 0px);
         opacity: 1;
       }
-
       49% {
         transform: translate(250px, 0px);
         opacity: 0;
       }
-
       80% {
         transform: translate(-40px, 0px);
         opacity: 0;
       }
-
       100% {
         transform: translate(0px, 0px);
         opacity: 1;
