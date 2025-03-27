@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Uiverse Searchbar – Transparent</title>
+  <title>Uiverse Custom Searchbar</title>
   <style>
     * {
       box-sizing: border-box;
@@ -12,223 +12,85 @@
     }
 
     body {
-      background-color: transparent; /* ← Kein schwarzer Hintergrund */
-      font-family: Arial, sans-serif;
+      background: transparent;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    #poda {
+    .input-wrapper {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 200px;
-      width: 100%;
+      gap: 15px;
       position: relative;
     }
 
     .input {
-      background-color: #010201;
-      border: none;
-      width: 301px;
-      height: 56px;
-      border-radius: 10px;
-      color: white;
-      padding-inline: 59px;
-      font-size: 18px;
+      border-style: none;
+      height: 50px;
+      width: 50px;
+      padding: 10px;
+      outline: none;
+      border-radius: 50%;
+      transition: 0.5s ease-in-out;
+      background-color: #E8DEBD;
+      box-shadow: 0px 0px 3px #E8DEBD;
+      padding-right: 40px;
+      color: #fff;
+      font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+      font-size: 17px;
     }
 
     .input::placeholder {
-      color: #c0b9c0;
+      color: #8f8f8f;
     }
 
-    .input:focus {
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 0px;
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
       outline: none;
+      border-style: none;
+      border-radius: 50%;
+      pointer-events: painted;
+      background-color: transparent;
+      transition: 0.2s linear;
     }
 
-    .white,
-    .border,
-    .darkBorderBg,
-    .glow {
-      max-height: 70px;
-      max-width: 314px;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      overflow: hidden;
-      z-index: -1;
-      border-radius: 12px;
-      filter: blur(3px);
+    /* Lupe beim normalen Zustand */
+    .icon svg path {
+      stroke: #ffffff;
+      transition: stroke 0.3s ease;
     }
 
-    .white {
-      max-height: 63px;
-      max-width: 307px;
-      border-radius: 10px;
-      filter: blur(2px);
+    /* Lupe und Input beim Fokus */
+    .icon:focus ~ .input,
+    .input:focus {
+      box-shadow: none;
+      width: 250px;
+      border-radius: 0px;
+      background-color: transparent;
+      border-bottom: 3px solid #C2B280;
+      transition: all 500ms cubic-bezier(0, 0.11, 0.35, 2);
     }
 
-    .white::before,
-    .border::before,
-    .darkBorderBg::before,
-    .glow::before {
-      content: "";
-      z-index: -2;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background-repeat: no-repeat;
-      background-position: 0 0;
-      transition: all 2s;
-      animation: rotate 4s linear infinite;
-    }
-
-    .white::before {
-      background-image: conic-gradient(
-        rgba(0, 0, 0, 0) 0%,
-        #a099d8,
-        rgba(0, 0, 0, 0) 8%,
-        rgba(0, 0, 0, 0) 50%,
-        #dfa2da,
-        rgba(0, 0, 0, 0) 58%
-      );
-    }
-
-    .border {
-      max-height: 59px;
-      max-width: 303px;
-      border-radius: 11px;
-      filter: blur(0.5px);
-    }
-
-    .border::before {
-      transform: translate(-50%, -50%) rotate(70deg);
-      background-image: conic-gradient(
-        #1c191c,
-        #402fb5 5%,
-        #1c191c 14%,
-        #1c191c 50%,
-        #cf30aa 60%,
-        #1c191c 64%
-      );
-    }
-
-    .darkBorderBg {
-      max-height: 65px;
-      max-width: 312px;
-    }
-
-    .darkBorderBg::before {
-      transform: translate(-50%, -50%) rotate(82deg);
-      background-image: conic-gradient(
-        rgba(0, 0, 0, 0),
-        #18116a,
-        rgba(0, 0, 0, 0) 10%,
-        rgba(0, 0, 0, 0) 50%,
-        #6e1b60,
-        rgba(0, 0, 0, 0) 60%
-      );
-    }
-
-    .glow {
-      overflow: hidden;
-      filter: blur(30px);
-      opacity: 0.4;
-      max-height: 130px;
-      max-width: 354px;
-    }
-
-    .glow::before {
-      transform: translate(-50%, -50%) rotate(60deg);
-      width: 999px;
-      height: 999px;
-      background-image: conic-gradient(
-        #000,
-        #402fb5 5%,
-        #000 38%,
-        #000 50%,
-        #cf30aa 60%,
-        #000 87%
-      );
-    }
-
-    #main {
-      position: relative;
-    }
-
-    #search-icon {
-      position: absolute;
-      left: 20px;
-      top: 15px;
-    }
-
-    #pink-mask {
-      pointer-events: none;
-      width: 30px;
-      height: 20px;
-      position: absolute;
-      background: #cf30aa;
-      top: 10px;
-      left: 5px;
-      filter: blur(20px);
-      opacity: 0.8;
-      animation: leftright 4s ease-in infinite;
-    }
-
-    #input-mask {
-      pointer-events: none;
-      width: 100px;
-      height: 20px;
-      position: absolute;
-      background: linear-gradient(90deg, transparent, black);
-      top: 18px;
-      left: 70px;
-    }
-
-    @keyframes rotate {
-      100% {
-        transform: translate(-50%, -50%) rotate(450deg);
-      }
-    }
-
-    @keyframes leftright {
-      0% {
-        transform: translate(0px, 0px);
-        opacity: 1;
-      }
-      49% {
-        transform: translate(250px, 0px);
-        opacity: 0;
-      }
-      80% {
-        transform: translate(-40px, 0px);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(0px, 0px);
-        opacity: 1;
-      }
+    .icon:focus svg path,
+    .input:focus ~ .icon svg path {
+      stroke: #C2B280;
     }
   </style>
 </head>
 <body>
-  <div id="poda">
-    <div class="glow"></div>
-    <div class="darkBorderBg"></div>
-    <div class="white"></div>
-    <div class="border"></div>
-
-    <div id="main">
-      <div id="pink-mask"></div>
-      <div id="input-mask"></div>
-
+  <div class="input-wrapper">
+    <button class="icon">
       <svg
-        id="search-icon"
         width="25px"
         height="25px"
         viewBox="0 0 24 24"
@@ -250,9 +112,8 @@
           stroke-linejoin="round"
         />
       </svg>
-
-      <input class="input" placeholder="Search..." />
-    </div>
+    </button>
+    <input type="text" name="text" class="input" placeholder="search.." />
   </div>
 </body>
 </html>
