@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Searchbar Elegant</title>
+  <title>Searchbar Sliding Icon</title>
   <style>
     html, body {
       margin: 0;
@@ -56,30 +56,30 @@
 
     .icon {
       position: absolute;
-      left: calc(50% - 20px);
+      left: 5px;
       top: 5px;
       height: 40px;
       width: 40px;
       background-color: #E8DEBD;
       border-radius: 10px;
-      z-index: -1;
       fill: #FFFFFF;
       border: 1px solid #E8DEBD;
-      transition: transform 0.2s ease-in-out;
+      z-index: 1;
+      transition: all 0.5s ease-in-out;
     }
 
-    .input:hover + .icon {
+    .input:hover ~ .icon {
       transform: rotate(360deg);
     }
 
-    .input:focus + .icon,
-    .input:not(:placeholder-shown) + .icon {
-      z-index: 0;
+    .input:focus ~ .icon,
+    .input:not(:placeholder-shown) ~ .icon {
       background-color: transparent;
       border: none;
+      z-index: 0;
+      left: 0px;
     }
 
-    /* Optional für Animation smoothness */
     svg {
       transition: stroke 0.3s ease;
     }
